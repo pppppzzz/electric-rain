@@ -1,0 +1,5 @@
+* text=auto
+# Preserve the original firmware snapshot byte-for-byte, including line endings.
+arduino/** -text
+ElectricRain/** -text
+*.png binary

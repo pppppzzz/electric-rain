@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#33394b">
+  <meta name="description" content="Electric Rain — an offline Arduino piano installation.">
+  <title>Electric Rain — Notepad</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="web/native/styles/main.css">
+  <script defer src="web/native/data.js"></script>
+  <script defer src="web/native/serial/config.js"></script>
+  <script defer src="web/native/serial/scoring.js"></script>
+  <script defer src="web/native/serial/text-v32.js"></script>
+  <script defer src="web/native/serial/protocol.js"></script>
+  <script defer src="web/native/serial/session.js"></script>
+  <script defer src="web/native/controller.js"></script>
+  <script defer src="web/native/serial/transport.js"></script>
+  <script defer src="web/native/audio/piano.js"></script>
+  <script defer src="web/native/animations/rain.js"></script>
+  <script defer src="web/native/i18n.js"></script>
+  <script defer src="web/native/visit-records.js"></script>
+  <script defer src="web/native/app.js"></script>
+</head>
+<body>
+<main>
+  <div class="desktop-meta"><span data-i18n="meta">ER / A SOUND AND WATER STUDY</span><span data-i18n="established">EST. 2026</span></div>
+  <section id="stage" class="stage window phase-waiting" aria-label="Electric Rain installation">
+    <header class="titlebar"><span class="file-icon">▤</span><span id="window-title">Electric Rain — Notepad</span><div class="window-controls" aria-hidden="true"><span>_</span><span>□</span><span>×</span></div></header>
+    <nav class="menubar"><div class="menu-labels" aria-hidden="true"><span data-i18n="file"></span><span data-i18n="edit"></span><span data-i18n="view"></span><span data-i18n="help"></span></div><div class="device"><button id="language-toggle" type="button" aria-label="切换至英文">English</button><span id="mode-label" class="mode-label">HARDWARE · OFFLINE</span><button id="connect">Connect</button></div></nav>
+    <div class="viewport">
+      <div class="paper"></div>
+      <canvas id="rain" data-i18n-aria="rain" width="480" height="236" class="rain-canvas" aria-label="Animated pixel rain and water ripples"></canvas>
+      <div class="margin-line"></div><div class="scrollbar" aria-hidden="true"><span>▲</span><i></i><span>▼</span></div>
+      <div id="cover" class="cover"><span class="folio" data-i18n="folio">FIELD NOTES / No. 001</span><h1>Electric Rain</h1><p class="subtitle" data-i18n="subtitle">a little sound, a passing rain.</p><div class="invitation"><span data-i18n="invitation">Blow or Speak</span><span id="cursor" class="cursor"></span></div><span id="waiting-caption" class="waiting-caption">WAITING FOR A SOUND TO BECOME A SONG</span><div class="cover-visit-record"><span data-i18n="visitBest">VISIT BEST</span> <b id="cover-visit-best">0000</b></div><svg class="umbrella" viewBox="0 0 140 130" fill="none" aria-hidden="true"><path d="M12 64Q68 -10 128 64Q108 50 92 63Q71 49 53 63Q32 51 12 64ZM70 15Q46 36 53 63M70 15Q91 33 92 63M70 15V112Q68 132 52 119V110M70 9V16" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/></svg></div>
+      <div id="playing" class="playing-head" hidden><div><small id="playing-number">NOW PLAYING / —</small><h2 id="playing-track">Awaiting track</h2></div><div class="scoreboard"><span><span data-i18n="score">SCORE</span> <b id="score">0000</b></span><span class="score-max"><span data-i18n="maxScore">MAX SCORE</span><b id="maximum-score">—</b></span><span><span data-i18n="combo">COMBO</span> <b id="combo">x00</b></span><span class="score-max"><span data-i18n="visitBest">VISIT BEST</span><b id="playing-visit-best">0000</b></span></div></div>
+      <section id="selection" class="window cd-player" role="dialog" aria-label="Finding your track" hidden>
+        <header class="titlebar"><span class="file-icon">▤</span><span data-i18n="cdWindow">CD Player — finding your rain</span><div class="window-controls" aria-hidden="true"><span>_</span><span>□</span><span>×</span></div></header>
+        <div class="cd-body"><div class="disc-wrap"><div class="disc"><div class="disc-label"><span data-i18n="discLabel">ELECTRIC RAIN</span><br><small data-i18n="recording">PERSONAL RECORDING · 01</small></div></div><span id="disc-caption" class="disc-caption">READING DISC . . .</span></div><div class="tracklist"><small data-i18n="captured">CAPTURED SOUND / SELECT TRACK</small><div class="track" data-track="1"><span class="track-box"></span><span data-track-name="1">01 · Jasmine Flower</span></div><div class="track" data-track="2"><span class="track-box"></span><span data-track-name="2">02 · Jingle Bells</span></div><div class="track" data-track="3"><span class="track-box"></span><span data-track-name="3">03 · Doll and Bear Dance</span></div><div class="readout"><span id="cd-readout">SEEKING . . .</span><span>▰ ▰ ▰ ▱</span></div></div></div>
+      </section>
+      <section id="result" class="window result" role="dialog" aria-modal="true" aria-labelledby="result-title" hidden>
+        <header class="titlebar"><span class="file-icon">▤</span><span data-i18n="resultWindow">Electric Rain - Result</span><div class="window-controls" aria-hidden="true"><span>_</span><span>□</span><span>×</span></div></header>
+        <div class="result-paper"><p id="result-title" data-i18n="ended">YOUR RAIN HAS ENDED.</p><div class="result-score"><span data-i18n="finalScore">FINAL SCORE</span><strong id="final-score">0000</strong></div><div id="result-progress" class="result-progress" hidden><div class="progress-heading"><label for="score-progress" data-i18n="scoreProgress">PROGRESS TO FULL SCORE</label><span id="progress-values"></span></div><progress id="score-progress" max="1" value="0"></progress><div class="progress-remainder"><span data-i18n="pointsRemaining">POINTS TO GO</span><span id="progress-remaining"></span></div></div><div class="result-row"><span data-i18n="bestCombo">BEST COMBO</span><b id="best-combo">x00</b></div><div class="result-visit-record"><div><span data-i18n="visitBest">VISIT BEST</span><b id="result-visit-best">0000</b></div><small id="visit-best-track">—</small></div><div class="result-track"><small data-i18n="track">TRACK</small><p id="result-track">Awaiting track</p></div><button id="return" data-i18n="return">Return</button><small class="return-hint" data-i18n="returnHint">RETURNING TO THE RAIN IN A MOMENT</small></div>
+      </section>
+      <button id="enable-audio" data-i18n="enableAudio" class="audio-enable" hidden>Enable sound</button>
+      <div id="error" role="alert" class="error" hidden><span id="error-message"></span><button id="dismiss-error" data-i18n-aria="dismissError" aria-label="Dismiss error">×</button></div>
+    </div>
+    <footer class="statusbar"><span><span id="phase-label">WAITING</span><i></i><span id="connection-label">Disconnected</span></span><span data-i18n="eightNotes">8 NOTES · ONE PASSING MOMENT</span><span>Electric Rain / 01</span></footer>
+  </section>
+  <div class="desktop-footer"><span data-i18n="listen">LISTEN. REACH. LET IT RAIN.</span><span data-i18n="installation">AN INTERACTIVE PIANO INSTALLATION</span></div>
+  <button id="developer-toggle" data-i18n="developer" class="dev-toggle" hidden>Developer</button>
+  <aside id="developer-panel" class="dev-panel" aria-label="Developer console" hidden>
+    <h3><span data-i18n="console">Test console</span> <button id="close-developer" data-i18n-aria="closeConsole" aria-label="Close developer console">×</button></h3><p id="developer-status"></p>
+    <button id="simulation-mode" data-i18n="useSimulation">Use simulation</button><button id="hardware-mode" data-i18n="useHardware">Use hardware</button>
+    <select id="demo-song" data-i18n-aria="demoTrack" aria-label="Demo track"><option value="1">Jasmine Flower</option><option value="2">Jingle Bells</option><option value="3">Doll and Bear Dance</option></select>
+    <button id="demo" data-i18n="demo" data-sim>Run full demo</button><button id="select-track" data-i18n="preview" data-sim>Preview selection</button>
+    <div class="test-notes"><button data-note="1" data-sim>C4</button><button data-note="2" data-sim>D4</button><button data-note="3" data-sim>E4</button><button data-note="4" data-sim>F4</button><button data-note="5" data-sim>G4</button><button data-note="6" data-sim>A4</button><button data-note="7" data-sim>B4</button><button data-note="8" data-sim>C5</button></div>
+    <div class="test-events"><button data-event="hit" data-i18n="hit" data-sim>hit</button><button data-event="early" data-i18n="early" data-sim>early</button><button data-event="miss" data-i18n="miss" data-sim>miss</button><button data-event="end" data-i18n="end" data-sim>End</button><button id="reset" data-i18n="reset">Reset</button></div>
+    <label><span data-i18n="sound">Sound</span> <input id="sound-input" data-i18n-aria="sound" aria-label="Sound" type="range" min="0" max="100" value="0" data-sim></label>
+    <pre id="logs" aria-label="Event log"></pre><small id="start-command-status"></small>
+    <small class="dev-help" data-i18n="shortcut">Ctrl + Shift + D · toggle test console</small>
+  </aside>
+  <noscript>This installation needs JavaScript enabled in your browser.</noscript>
+</main>
+</body>
+</html>

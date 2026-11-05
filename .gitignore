@@ -1,0 +1,9 @@
+.tools/
+.build/
+__pycache__/
+web/node_modules/
+web/dist/
+web/.vite/
+*.tsbuildinfo
+_site/
+*.log

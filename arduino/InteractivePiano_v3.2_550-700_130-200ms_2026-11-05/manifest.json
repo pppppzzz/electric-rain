@@ -1,0 +1,21 @@
+{
+  "snapshot_id": "InteractivePiano_v3.2_550-700_130-200ms_2026-11-05",
+  "created_at": "2026-11-05T17:36:04.131520+08:00",
+  "firmware_banner": "Interactive Piano v3.2 MODERATE",
+  "board": "Arduino UNO R3 / ATmega328P",
+  "core": "arduino:avr 1.8.8",
+  "gcc": "7.3.0-atmel3.6.1-arduino7",
+  "source_files_sha256": {
+    "InteractivePiano/.gitignore": "99921edb369e12a35a87d768ae481f8c944573626abd4b8f3a1fe78846f30ba7",
+    "InteractivePiano/Config.h": "ac6ce4a24159a2eaac185a87cd0a00022c3a61788e7d8f42811025275ad1de4f",
+    "InteractivePiano/GameRules.h": "ea08a75f74338009b6da165456a116205205b2767d33dfa817ffed1c6382d262",
+    "InteractivePiano/InteractivePiano.ino": "04220e83005074254b6f1b62dd96fc3480d1a093362e9b82017361b074524ba8",
+    "InteractivePiano/README_接线与使用.md": "d6708dacbeb56cef28ea571819721c5c2d18147ce5837717b8e2ab2c872ae8cb",
+    "InteractivePiano/Songs.h": "52475deb0ebfe4b51ba5f5e3c834a0dbbc303a88d916990328f14671a8ee7a53",
+    "InteractivePiano/verify-build.ps1": "9324d5909126d23dbb92ee4e88602670b7ec5147b5676b3dda1470381a678999"
+  },
+  "source_modified_for_packaging": false,
+  "board_binary_verified": false,
+  "real_serial_log_available": false,
+  "physical_wiring_verified": false
+}
