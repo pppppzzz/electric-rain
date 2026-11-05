@@ -15,7 +15,7 @@ test('root HTML has only existing relative classic-script and CSS resources', ()
   const root = path.resolve(base,'../..'), html = fs.readFileSync(path.join(root,'index.html'),'utf8');
   const resources = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(match => match[1]).filter(value => !value.startsWith('data:'));
   assert.ok(resources.length >= 9);
-  for (const resource of resources) { assert.ok(!/^(https?:|\/)/.test(resource)); assert.ok(fs.existsSync(path.join(root,resource)),resource); }
+  for (const resource of resources) { assert.ok(!/^(https?:|\/)/.test(resource)); assert.ok(fs.existsSync(path.join(root,resource.split(/[?#]/)[0])),resource); }
   assert.ok(!/type="module"|\.tsx|cdn\./.test(html));
 });
 test('v3.2 real text dialect runs all phases with verdict scores and no guessed start', () => {
