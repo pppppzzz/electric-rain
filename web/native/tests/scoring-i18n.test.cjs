@@ -67,7 +67,7 @@ test('full simulated fixture totals 28 and combo 6, then resets with mode isolat
   c.setMode('HARDWARE');assert.equal(c.state.score,0);assert.equal(c.state.bestCombo,0);
 });
 test('both dictionaries cover all declared UI keys and switching preserves active scores',()=>{
-  const E=runtime(),html=fs.readFileSync(path.resolve(base,'../../index.html'),'utf8');
+  const E=runtime(),html=fs.readFileSync(path.resolve(base,'../../index.html'),'utf8')+fs.readFileSync(path.resolve(base,'../../project.html'),'utf8');
   const keys=[...html.matchAll(/data-i18n(?:-aria)?="([^"]+)"/g)].map(m=>m[1]);
   const c=new E.Controller();c.receive({type:'song',song:2},'HARDWARE');c.receive({type:'hit',score:6,combo:2},'HARDWARE');
   for(const lang of ['zh','en']){

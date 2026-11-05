@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Electric Rain — 接线与代码</title><link rel="icon" href="data:,">
+  <link rel="stylesheet" href="web/native/styles/project.css">
+  <script defer src="web/native/data.js"></script><script defer src="web/native/i18n.js"></script><script defer src="web/native/project.js"></script>
+</head>
+<body>
+<main class="project-window">
+  <header><span data-i18n="projectTitle">Electric Rain — 接线与代码</span><button id="language-toggle">English</button></header>
+  <nav><a href="index.html" data-i18n="backToRain">返回雨夜记事本</a><span data-i18n="projectVersion">UNO R3 / v3.2 / 550–700</span></nav>
+  <article>
+    <h1>Electric Rain</h1><p class="intro" data-i18n="projectIntro">声音选择歌曲，超声波触发钢琴，点阵显示谱面，交通灯给出判定。</p>
+    <section><h2 data-i18n="wiringTitle">接线方式</h2><p data-i18n="wiringSource">按当前交付工程 Config.h 整理，接线前断开供电；网页通过 USB 串口接收事件，不直接设置物理引脚。</p>
+    <div class="table-scroll"><table><thead><tr><th data-i18n="module">模块</th><th data-i18n="modulePin">模块端口</th><th>Arduino UNO R3</th></tr></thead><tbody>
+      <tr><td rowspan="4">HW-484 <span data-i18n="soundSensor">声音传感器</span></td><td>VCC / +</td><td>5V</td></tr><tr><td>GND / −</td><td>GND</td></tr><tr><td>AO</td><td>A0</td></tr><tr><td>DO</td><td data-i18n="unused">不接</td></tr>
+      <tr><td rowspan="4">HC-SR04 <span data-i18n="ultrasonic">超声波</span></td><td>VCC</td><td>5V</td></tr><tr><td>GND</td><td>GND</td></tr><tr><td>Trig</td><td>D6</td></tr><tr><td>Echo</td><td>D7</td></tr>
+      <tr><td rowspan="5">MAX7219 8×32</td><td>VCC</td><td>5V</td></tr><tr><td>GND</td><td>GND</td></tr><tr><td>DIN</td><td>D11</td></tr><tr><td>CS / LOAD</td><td>D10</td></tr><tr><td>CLK</td><td>D13</td></tr>
+      <tr><td rowspan="4" data-i18n="trafficLights">红黄绿交通灯</td><td>R</td><td>D3</td></tr><tr><td>Y</td><td>D4</td></tr><tr><td>G</td><td>D5</td></tr><tr><td>GND</td><td>GND</td></tr>
+    </tbody></table></div>
+    <p class="note" data-i18n="powerNote">所有模块共地。交通灯 G 表示绿灯，不是 GND；当前配置为 HIGH 点亮。点阵若使用独立 5V 供电，需共地并避免与 USB 5V 随意并联。</p></section>
+    <section><h2 data-i18n="codeTitle">代码与版本</h2><p data-i18n="codeIntro">Arduino 负责传感器、点阵和灯光判定；网页负责实际钢琴声音、雨水视觉，以及按真实判定累计成绩。</p>
+      <div class="code-links"><a href="https://github.com/pppppzzz/electric-rain/tree/main/arduino/InteractivePiano_v3.2_550-700_130-200ms_2026-11-05/InteractivePiano" target="_blank" rel="noopener" data-i18n="arduinoCode">查看 Arduino 完整工程</a><a href="https://github.com/pppppzzz/electric-rain/tree/main/web/native" target="_blank" rel="noopener" data-i18n="webCode">查看原生网页代码</a></div>
+      <p data-i18n="codeFiles">Arduino 工程需同时保留 .ino、Config.h、Songs.h 和 GameRules.h。打开 .ino 时使用同目录的全部文件，不能只复制主程序。接线与旧 ElectricRain 历史工程不同，请以此页和当前 Config.h 为准。</p>
+      <p class="note" data-i18n="versionNote">原始 Arduino 快照已保留，板内版本与实物接线仍需操作者自行核对。现有固件自动倒计时开始；r 是重新校准，不是开始命令。</p>
+    </section>
+    <section><h2 data-i18n="connectionTitle">网页连接</h2><ol><li data-i18n="connectStep1">使用数据 USB 线连接 UNO，关闭 IDE 串口监视器和绘图器。</li><li data-i18n="connectStep2">用 Windows Chrome/Edge 打开雨夜记事本，点击连接设备，选择 UNO 对应 COM；波特率为 115200。</li><li data-i18n="connectStep3">必要时按一下板上的 RESET。安静两秒，再吹气选歌；输入峰值 550–700 有效。</li></ol></section>
+  </article><footer>Electric Rain · 2026</footer>
+</main>
+</body></html>

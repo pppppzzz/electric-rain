@@ -18,3 +18,5 @@ main{padding:2vh 3.4vw}.stage{width:min(100%,calc(88dvh * 16 / 9))}.desktop-meta
 
 /* Visit records share the existing muted notepad typography. */
 .cover-visit-record{position:absolute;left:26%;top:77%;font-size:.8cqw;letter-spacing:.08em;color:#666e8b}.cover-visit-record b{font-weight:400;margin-left:1cqw}.result-visit-record{margin:1.1cqw 0;font-size:.85cqw;color:#666c87}.result-visit-record>div{display:flex;justify-content:space-between}.result-visit-record b{font-weight:400}.result-visit-record small{display:block;margin-top:.35cqw;font-size:.65cqw}
+
+.desktop-footer a{color:#c1bdcf;text-underline-offset:3px;letter-spacing:.06em}.desktop-footer a:focus-visible{outline:1px dashed #ddd6e5;outline-offset:3px}

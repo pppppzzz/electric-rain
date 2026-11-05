@@ -6,6 +6,8 @@
 
 复制到其他电脑时，保留 `index.html` 和 `web/native/` 的相对位置，不能只复制 HTML 一个文件。不要打开 `web/index.html`，那是保留备查的旧 React 入口；新入口与本 README 同级。
 
+页面底部“接线与代码”进入 project.html，提供当前 Config.h 对应的接线表、连接步骤和 Arduino/网页源代码入口，中英文均支持。复制离线项目时同时保留 project.html。源代码当前在公开仓库中可见，展示入口不会限制 GitHub 上的访问。
+
 ## 中英文与计分
 
 本次访问最高分已加入封面、计分区与结算：只记录本标签页已完成演奏的最高最终成绩，普通刷新保留，换歌/返回不清空；模拟与真实记录分开。不是跨设备排行榜。仓库：https://github.com/pppppzzz/electric-rain 。GitHub Pages 自动部署配置和说明见 docs/github-pages.md，main 分支新提交会触发发布，结果见 Actions。
